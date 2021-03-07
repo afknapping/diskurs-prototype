@@ -1,0 +1,42 @@
+{
+  "name": "sac1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "watch": {
+    "copy-static": "src/static"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test-pug-html": "echo \"Error: no test specified to check for synced pug and html\" && exit 1",
+    "start": "npm run copy && npm run dev",
+    "dev": "npm run watch & npm run serve",
+    "deploy": "surge .build",
+    "build": "",
+    "watch": "npm run pug-watch & npm run sass-watch & npm-watch",
+    "serve": "npm run browser-sync",
+    "pug-watch-bak": "pug -O 'src/data.json' src --out .build --pretty --watch",
+    "pug-watch": "nodemon --watch src/data.json --exec 'pug -O src/data.json src --out .build --pretty --watch'",
+    "sass-watch": "sass src/:.build --watch",
+    "browser-sync": "browser-sync start --server --serveStatic .build --watch .build --config .bs-config.js",
+    "copy": "npm run copy-libs && npm run copy-static",
+    "copy-libs": "cp node_modules/normalize.css/normalize.css ./.build/ && cp ./node_modules/turbolinks/dist/turbolinks.js ./.build",
+    "copy-static-bak": "cp src/static/* ./.build",
+    "copy-static": "cp src/static/* ./.build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "browser-sync": "^2.26.13",
+    "jstransformer-sass": "^1.0.0",
+    "nodemon": "^2.0.7",
+    "normalize.css": "^8.0.1",
+    "npm": "^7.6.1",
+    "npm-watch": "^0.7.0",
+    "package-write": "^1.0.1",
+    "pug-cli": "^1.0.0-alpha6",
+    "s": "^1.0.0",
+    "sass": "^1.30.0",
+    "turbolinks": "^5.2.0"
+  }
+}

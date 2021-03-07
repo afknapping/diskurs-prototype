@@ -1,0 +1,14 @@
+{
+  "_comment": "you cannot start with an array. data needs a root variable to be referenced in the templates",
+  "people":
+  [
+    { "first":"john"},
+    { "first":"Kathy"},
+    { "first":"Jonas"},
+    { "first":"hanna"},
+    { "first":"Andre"}
+  ]
+    
+}
+
+

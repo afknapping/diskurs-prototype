@@ -1,0 +1,139 @@
+
+/* ***********************************************
+/* ROOT VARIABLES
+   use as much native css and as little sass as possible
+
+:root
+  /* these must be measured out per font
+     check results with fallback fonts too
+     the whole layout and how it behaves depends on these
+  --fortyfive-chars: 23em
+  --eighty-chars: 37em
+  --onehundredten-chars: 52em
+
+// add some extra to the --eighty-chars to adjust for horizontal margins, paddings
+$eighty-chars: 37em + 5em
+
+/* ***********************************************
+/* WIREFRAME STYLES
+@import url('https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap')
+body  
+  font-family: Mali, "Comic Sans MS", "Comic Sans", cursive
+  color: #444
+  line-height: 1.3
+
+// https://css-houdini.rocks/rough-boxes
+//   https://houdini.glitch.me/paint
+.prototype > *,
+.prototype .actions
+  // h1, h2, h3, p, ul, ol, button, div, imput, textarea, label, summary span, nav
+  // border: 1px solid black
+  background: var(--rough-fill)
+  border: var(--rough-stroke-width) solid var(--rough-stroke)
+  // --rough-fill: #ccc
+  --rough-stroke: #aaa
+  --rough-stroke-width: 1px
+  --rough-roughness: 1
+  border-image-source: paint(rough-boxes)
+  border-image-slice: 0 fill
+  border-image-outset: 12px
+  background: none
+
+/* ***********************************************
+/* CONTENT BASED BREAKPOINTS, LAYOUT SWITCH(ES)
+   AND INPUT DEVICE ADJUSTMENTS
+  
+   TODO: render UI of missing browser chrome [display-mode - CSS: Cascading Style Sheets | MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/display-mode)
+
+   media queries break when using vir var()
+   so we need to do some sass here
+
+/* $eighty-chars was defined after the :root variables section at the top
+/* since i want to write media queries close to the elemens, there is a mixin to only change the value in one place
+
+@mixin media-min-width
+  @media (min-width: $eighty-chars)
+    @content
+
+.prototype
+  max-width: var(--onehundredten-chars)
+  margin: auto
+  @include media-min-width
+    display: grid
+    grid-template-columns: calc(var(--fortyfive-chars) / 2) minmax(var(--fortyfive-chars), var(--onehundredten-chars))
+    grid-gap: 1em 1em
+    max-width: calc(var(--fortyfive-chars) + var(--onehundredten-chars))
+    /* adjust center of main column to center of viewport
+    position: relative
+    // left: -2em
+
+/* list styling
+/* https://css-tricks.com/almanac/properties/l/list-style/
+nav ul
+  list-style-position: outside
+  list-style-image: none
+  // list-style-type: "→"
+  list-style-type: none
+  padding: 0
+
+
+/* mobile and desktop navigation
+nav.short
+  position: fixed
+  text-align: center
+  background: white
+  bottom: 0
+  left: 0
+  width: 100vw
+  padding: 1em 0
+  details ul
+    position: absolute
+    font-size: 162%
+    left: 0
+    bottom: 1em
+    width: 100vw
+    background: white
+    box-shadow: 0px -5px 4px 0px rgba(0,0,0,0.48)
+  summary
+    // padding: 1em
+  @include media-min-width
+    display: none
+    
+
+nav.wide
+  display: none
+  font-weight: 900
+  opacity: 0.8
+  font-size: 162%
+  @media (any-pointer)
+    font-size: 162%
+  @media (any-hover)
+    font-size: 100%
+    opacity: 0.6
+    transition: opacity 0.2s ease-out
+    &:hover
+      opacity: 1
+  @include media-min-width
+    display: block
+    grid-row: 1 / 30
+
+
+
+/* ***********************************************
+/* USEFUL DEFAULTS
+body
+  overscroll-behavior-y: none
+  padding: 1em
+  margin: 0.5em
+
+
+
+
+
+
+
+
+// - [ ] [Centering in CSS](https://web.dev/centering-in-css/)
+// - [ ] [nicokant/readable-css: A minimal css to improve the readability of a webpage](https://github.com/nicokant/readable-css)
+// - [ ] [typebase.css: The starting point for good typography on the web](https://devinhunt.github.io/typebase.css/)
+// - [ ] [Standard css](https://www.standardcss.com/)

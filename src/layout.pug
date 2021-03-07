@@ -1,0 +1,48 @@
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  meta(http-equiv='X-UA-Compatible' content='ie=edge')
+  title my-new-project
+
+  link(rel="manifest" href="manifest.json")
+
+  
+  //- generate with https://realfavicongenerator.net/
+  link(rel="shortcut icon" type="image/png" href="/favicon-32x32.png")
+  link(rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png")
+  link(rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png")
+  link(rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png")
+  link(rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5")
+  meta(name="msapplication-TileColor" content="#ffffff")
+  meta(name="theme-color" content="#ffffff")
+
+
+  //- meta(name="apple-mobile-web-app-status-bar" content="#ffffff")
+  //- meta(name="theme-color" content="#ffffff")
+
+
+  link(href="normalize.css" rel="stylesheet")
+  link(href="index.css" rel="stylesheet")
+
+  //- [Building a Single Page Application without React | by Jack Martin | Medium](https://medium.com/@jackmartin1/building-a-single-page-application-without-react-69a58e25a96d)
+  script(src='turbolinks.js')
+    | Turbolinks.start();
+  //- in case of cache debugging enable this:
+  //- meta(name="turbolinks-cache-control" content="no-cache")
+
+
+body
+  include _sac1-tools.pug
+
+  .prototype
+    nav.short
+      details 
+        summary
+          span Navigation
+        include example-nav.pug
+    nav.wide
+      include example-nav.pug
+
+    block content
+
+  script(src='index.js')
