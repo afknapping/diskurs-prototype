@@ -7,24 +7,40 @@
   /* these must be measured out per font
      check results with fallback fonts too
      the whole layout and how it behaves depends on these
-  --fortyfive-chars: 23em
-  --eighty-chars: 37em
-  --onehundredten-chars: 52em
+  // --fortyfive-chars: 23em
+  // --eighty-chars: 37em
+  // --onehundredten-chars: 52em
+  // 43em 31em 20em
+  --fortyfive-chars: 20em
+  --eighty-chars: 33em
+  --onehundredten-chars: 49em
+  --normal: 100%
+  --medium: 162%
+  --large: 262%
+  --xlarge: 424%
+  --small: 80%
 
+  
 // add some extra to the --eighty-chars to adjust for horizontal margins, paddings
-$eighty-chars: 37em + 5em
+$eighty-chars: 33em + 5em
+
+/* uncomment the following lines to see the typoscale and andjust values
+// .typoscale
+//   display: block !important
+
+
 
 /* ***********************************************
 /* WIREFRAME STYLES
-// @import url('https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap')
 body  
   font-family: Komika Text, "Comic Sans MS", "Comic Sans", cursive
   color: #444
   line-height: 1.3
+  letter-spacing: -0.03em
 
 // https://css-houdini.rocks/rough-boxes
 //   https://houdini.glitch.me/paint
-.prototype > *,
+.prototype *,
 .prototype .actions
   // h1, h2, h3, p, ul, ol, button, div, imput, textarea, label, summary span, nav
   // border: 1px solid black
@@ -48,8 +64,11 @@ body
    media queries break when using vir var()
    so we need to do some sass here
 
+
+/* media queries do not do calc()  
 /* $eighty-chars was defined after the :root variables section at the top
 /* since i want to write media queries close to the elemens, there is a mixin to only change the value in one place
+
 
 @mixin media-min-width
   @media (min-width: $eighty-chars)
@@ -61,7 +80,7 @@ body
   @include media-min-width
     display: grid
     grid-template-columns: calc(var(--fortyfive-chars) / 2) minmax(var(--fortyfive-chars), var(--onehundredten-chars))
-    grid-gap: 1em 1em
+    grid-gap: 1em 3em
     max-width: calc(var(--fortyfive-chars) + var(--onehundredten-chars))
     /* adjust center of main column to center of viewport
     position: relative
@@ -127,9 +146,42 @@ body
   margin: 0.5em
 
 
+/* ***********************************************
+/* Margins
+
+div, p, h1, h2, h3, h4, h5, h6, nav, section, ul, ol
+  margin: 0
+  padding: 0
+
+// https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/
+p + p
+  margin-top: 1em
+// li + li
+//   margin-top: 0.62em
+h1, h2, h3, h4, h5, h6
+  margin-bottom: 0.62em
+* + h1, * + h2, * + h3, * + h4, * + h5, * + h6
+  margin-top: 0.62em
+* + img
+  margin-top: 0.62em
+
+p, ul, ol
+  font-size: var(--medium)
+h1
+  font-size: var(--xlarge)
+h2
+  font-size: var(--large)
+h3
+  font-size: var(--medium)
+h4, h5, h6
+  font-size: var(--normal)
+
+  
+img
+  max-width: 100%
 
 
-
+// var(--small)
 
 
 
