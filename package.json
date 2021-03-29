@@ -21,8 +21,7 @@
     "browser-sync": "browser-sync start --server --serveStatic .build --watch .build --config .bs-config.js",
     "copy": "npm run copy-libs && npm run copy-static",
     "copy-libs": "cp node_modules/normalize.css/normalize.css ./.build/ && cp ./node_modules/turbolinks/dist/turbolinks.js ./.build",
-    "copy-static-bak": "cp src/static/* ./.build",
-    "copy-static": "cp src/static/* ./.build"
+    "copy-static": "cp -r src/static/* ./.build"
   },
   "author": "",
   "license": "ISC",
